@@ -8,12 +8,15 @@ class FuelPrice(models.Model):
     state = models.CharField(max_length=2)  # State
     rack_id = models.IntegerField()  # Rack ID
     retail_price = models.DecimalField(max_digits=10, decimal_places=6)  # Retail Price
+    latitude = models.FloatField(null=True, blank=True)  # Latitude
+    longitude = models.FloatField(null=True, blank=True)  # Longitude
 
     class Meta:
         indexes = [
             models.Index(fields=["city", "state"]),
             models.Index(fields=["retail_price"]),
+            models.Index(fields=["latitude", "longitude"]),
         ]
-    
+
     def __str__(self):
         return f"{self.truckstop_name} - {self.city}, {self.state}"

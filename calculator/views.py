@@ -14,6 +14,7 @@ class RouteFuelStopsAPIView(APIView):
         try:
             route = get_route(start_address, finish_address)
             fuel_stops, total_cost = calculate_fuel_stops(route)
+            print(fuel_stops)
             return Response({"fuel_stops": fuel_stops, "total_cost": total_cost}, status=status.HTTP_200_OK)
         except Exception as e:
             return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
